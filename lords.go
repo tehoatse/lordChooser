@@ -61,7 +61,8 @@ func createLords() []Lord {
 	l = append(l, newLord(HighElves, "Order of Loremasters", "Teclis", placeholder))
 	l = append(l, newLord(HighElves, "Avelorn", "Alarielle the Radiant", placeholder))
 	l = append(l, newLord(HighElves, "Nagarythe", "Alith Anar", placeholder))
-	
+	l = append(l, newLord(HighElves, "Yvresse", "Eltharion the Grim", placeholder))
+	l = append(l, newLord(HighElves, "Knights of Caledor", "Imrik", placeholder))
 
 	// adding an index afterwards is quicker than typing
 	for i, lord := range l {
@@ -78,5 +79,4 @@ func newLord(race string, faction string, name string, description string) Lord 
 	l.LordName = name
 	l.Description = description
 	return l
-
 }
