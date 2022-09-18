@@ -1,11 +1,16 @@
 package main
 
+import (
+	"math/rand"
+	"time"
+)
+
 type Lord struct {
-	Number      int
-	Race        string
-	Faction     string
-	LordName    string
-	Description string
+	Number      int    `json:"number"`
+	Race        string `json:"race"`
+	Faction     string `json:"faction"`
+	LordName    string `json:"lordName"`
+	Description string `json:"description"`
 }
 
 const (
@@ -18,7 +23,7 @@ const (
 	TheEmpire     = "The Empire"
 	GrandCathay   = "Grand Cathay"
 	Greenskins    = "Greenskins"
-	HighElves     = "HighElves"
+	HighElves     = "High Elves"
 
 	placeholder = "placeholder"
 )
@@ -65,8 +70,8 @@ func createLords() []Lord {
 	l = append(l, newLord(HighElves, "Knights of Caledor", "Imrik", placeholder))
 
 	// adding an index afterwards is quicker than typing
-	for i, lord := range l {
-		lord.Number = i
+	for i := range l {
+		l[i].Number = i
 	}
 
 	return l
@@ -74,9 +79,15 @@ func createLords() []Lord {
 
 func newLord(race string, faction string, name string, description string) Lord {
 	var l Lord
+	l.Number = 0
 	l.Race = race
 	l.Faction = faction
 	l.LordName = name
 	l.Description = description
 	return l
+}
+
+func getRandomLord(lords []Lord) Lord {
+	rand.Seed(time.Now().UnixNano())
+	return lords[rand.Intn(len(lords))]
 }
